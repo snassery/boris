@@ -3,6 +3,17 @@
 /**
 * Implements hook_help().
 */
+function clock_user($type, &$edit, &$user, $category = NULL) {
+  switch ($type) {
+    case 'view':
+      $items['Last Login'] = array(
+        'title' => t('Last login'),
+        'value' => format_date($user->login,'small'), 
+        'class' => 'mymodule',       
+      );      
+      return array(t('History') => $items);
+      break;
+}
 function clock_help($path, $arg) {
   switch ($path) {
     case 'admin/help#clock':
